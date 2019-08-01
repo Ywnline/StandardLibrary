@@ -35,5 +35,8 @@ func main() {
 	fmt.Println(strings.SplitN("foo,bar,baz", ",", 2))
 
 	// 1.4. 2.1.4 字符串是否有某个前缀或后缀
+	// 子slice subslice 在 b 中，返回 true
+	b := "123"
+	fmt.Println(strings.Contains(b, "1"))
 
 }
