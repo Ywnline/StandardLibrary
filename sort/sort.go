@@ -1,4 +1,4 @@
-package StandardLibrary
+package main
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func (s StuScores) Len() int {
 
 //Less():成绩将有低到高排序
 func (s StuScores) Less(i, j int) bool {
-	return s[i].sge < s[j].sge
+	return s[i].score < s[j].score
 }
 
 //Swap()
@@ -38,9 +38,21 @@ func main() {
 	//打印未排序的stus数据
 	fmt.Println("Default:\n\t", stus)
 	//StuScores已经实现了sort.Interface接口,所以可以调用Sort函数进行排序
+	// 升序
 	sort.Sort(stus)
+	// 降序
+	sort.Sort(sort.Reverse(stus))
 	//判断是否已经排好顺序，将会打印true
 	fmt.Println("IS Sorted?\n\t", sort.IsSorted(stus))
 	//打印排序后的stus数据
 	fmt.Println("Sorted:\n\t", stus)
+
+	var s string
+	fmt.Printf("Pick an integer from 0 to 100.\n")
+	answer := sort.Search(100, func(i int) bool {
+		fmt.Printf("Is your number <= %d? ", i)
+		fmt.Scanf("%s", &s)
+		return s != "" && s[0] == 'y'
+	})
+	fmt.Printf("Your number is %d.\n", answer)
 }
